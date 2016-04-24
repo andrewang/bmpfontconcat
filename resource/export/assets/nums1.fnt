@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<font>
+  <info face="nums1" size="32" bold="0" italic="0" charset="" unicode="1" stretchH="100" smooth="1" aa="1" padding="0,0,0,0" spacing="1,1" outline="0"/>
+  <common lineHeight="32" base="0" scaleW="256" scaleH="256" pages="1" packed="0" alphaChnl="1" redChnl="1" greenChnl="1" blueChnl="1"/>
+  <pages>
+    <page id="0" file="nums1.png"/>
+  </pages>
+  <chars count="9">
+    <char id="48" x="0" y="0" width="26" height="32" xoffset="0" yoffset="0" xadvance="25" page="0" chnl="15"/>
+    <char id="49" x="26" y="0" width="17" height="32" xoffset="0" yoffset="0" xadvance="16" page="0" chnl="15"/>
+    <char id="50" x="43" y="0" width="25" height="32" xoffset="0" yoffset="0" xadvance="26" page="0" chnl="15"/>
+    <char id="51" x="68" y="0" width="24" height="32" xoffset="0" yoffset="0" xadvance="24" page="0" chnl="15"/>
+    <char id="52" x="92" y="0" width="26" height="32" xoffset="0" yoffset="0" xadvance="26" page="0" chnl="15"/>
+    <char id="53" x="118" y="0" width="25" height="32" xoffset="0" yoffset="0" xadvance="24" page="0" chnl="15"/>
+    <char id="54" x="143" y="0" width="26" height="32" xoffset="0" yoffset="0" xadvance="26" page="0" chnl="15"/>
+    <char id="55" x="169" y="0" width="25" height="32" xoffset="0" yoffset="0" xadvance="25" page="0" chnl="15"/>
+    <char id="56" x="194" y="0" width="26" height="32" xoffset="0" yoffset="0" xadvance="26" page="0" chnl="15"/>
+    <char id="57" x="220" y="0" width="26" height="32" xoffset="0" yoffset="0" xadvance="26" page="0" chnl="15"/>
+  </chars>
+</font>
