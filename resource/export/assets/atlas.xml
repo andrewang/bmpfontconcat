@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:02d9c825411bacb9c7bca401f7d0ec56:b811702a2310a6aeee67d21eb19acf85:cde709370900f12288f3449eded86f07$ -->
-<TextureAtlas imagePath="atlas.png" width="247" height="331">
+<!-- $TexturePacker:SmartUpdate:960651d8d7cede9eba555ac2c3abf4ab:29d7236093dba824cee7984afc9ecab1:cde709370900f12288f3449eded86f07$ -->
+<TextureAtlas imagePath="atlas.png" width="247" height="201">
     <SubTexture name="nums1" x="1" y="1" width="245" height="32" frameX="0" frameY="0" frameWidth="256" frameHeight="32"/>
     <SubTexture name="nums2" x="1" y="35" width="245" height="32" frameX="0" frameY="0" frameWidth="256" frameHeight="32"/>
-    <SubTexture name="pappey" x="1" y="69" width="217" height="261"/>
+    <SubTexture name="pappey" x="1" y="69" width="109" height="131"/>
+    <SubTexture name="testFont" x="112" y="69" width="79" height="80"/>
 </TextureAtlas>

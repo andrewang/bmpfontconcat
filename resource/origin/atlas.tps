@@ -197,6 +197,7 @@
             <key type="filename">nums1.png</key>
             <key type="filename">nums2.png</key>
             <key type="filename">pappey.png</key>
+            <key type="filename">testFont.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -207,6 +208,7 @@
             <filename>nums1.png</filename>
             <filename>nums2.png</filename>
             <filename>pappey.png</filename>
+            <filename>testFont.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
