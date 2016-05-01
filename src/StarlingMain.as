@@ -1,5 +1,8 @@
 package {
 	import flash.display.Stage;
+	import flash.display.StageAlign;
+	import flash.display.StageQuality;
+	import flash.display.StageScaleMode;
 	import flash.display3D.Context3DTextureFormat;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
@@ -18,21 +21,27 @@ package {
 	import starling.utils.Align;
 	import starling.utils.AssetManager;
 	import starling.utils.RectangleUtil;
+	import starling.utils.ScaleMode;
 
 	public class StarlingMain extends Sprite {
 
-		private static const CONTENTS_SIZE:Rectangle = new flash.geom.Rectangle(0, 0, 640, 480);
+		private static const CONTENTS_SIZE:Rectangle = new flash.geom.Rectangle(0, 0, 320, 224);
+
+		// msx:256 famicom:256 pc80:320 PCEngine:256,320,336,512
+		// msx:212 famicom:224 pc80:200 PCEngine:240(実質224)
 
 		public static function start(nativeStage:Stage):void {
 			trace("Staaling version", Starling.VERSION);
+
 			var starling:Starling = new Starling(
 				StarlingMain,
 				nativeStage,
-				new Rectangle(0, 0, nativeStage.stageWidth, nativeStage.stageHeight)
+				new Rectangle(0, 0, CONTENTS_SIZE.width, CONTENTS_SIZE.height)
 			);
 			starling.skipUnchangedFrames = true;
-			// starling.showStats = true;
+			starling.antiAliasing = 0;
 			starling.start();
+			starling.stage.color = 0x000000;
 			nativeStage.addEventListener(Event.RESIZE,_updateViewPort);
 			_updateViewPort();
 		}
@@ -40,11 +49,15 @@ package {
 			var starling:Starling = Starling.current;
 			var w:int = starling.nativeStage.stageWidth;
 			var h:int = starling.nativeStage.stageHeight;
+			var scale:Number = Math.floor(Math.min(w/CONTENTS_SIZE.width,h/CONTENTS_SIZE.height));
 			starling.viewPort = RectangleUtil.fit(
-				CONTENTS_SIZE,
-				new flash.geom.Rectangle(0, 0, w, h)
-			);
-			//starling.showStatsAt(Align.RIGHT, Align.BOTTOM);
+				new Rectangle(0, 0, CONTENTS_SIZE.width, CONTENTS_SIZE.height),
+				new Rectangle((w - CONTENTS_SIZE.width*scale)>>1, (h - CONTENTS_SIZE.height*scale)>>1, CONTENTS_SIZE.width*scale,CONTENTS_SIZE.height*scale),
+				ScaleMode.SHOW_ALL);
+
+			starling.showStats = true;
+			starling.showStatsAt(Align.RIGHT, Align.BOTTOM);
+
 		}
 
 		private var _assetManager:AssetManager;
@@ -58,6 +71,7 @@ package {
 			_assetManager.enqueueWithName('app:/assets/nums1.fnt');
 			_assetManager.enqueueWithName('app:/assets/nums2.fnt');
 			_assetManager.enqueueWithName('app:/assets/testFont.fnt');
+			_assetManager.enqueueWithName('app:/assets/testAIUEO.fnt');
 			_assetManager.loadQueue(function(ratio:Number):void {
 			    if(ratio == 1) {
 					_start();
@@ -67,14 +81,15 @@ package {
 
 		private function _start():void {
 
+			_addtext('あいうえおうおい','testAIUEO', 10, 10, 28);
 			_addtext('00001111','nums1', 10, 30);
 			_addtext('22223333','nums2', 10, 50);
 			_addtext('44445555','nums1', 10, 70);
 			_addtext('66667777','testFont', 10, 90, 28);
 
 			var image:Image = new Image(_assetManager.getTexture('pappey'));
-			image.x = 10;
-			image.y = 110;
+			image.x = 200;
+			image.y = 10;
 			image.scaleX = image.scaleY = 1;
 			image.textureSmoothing = TextureSmoothing.NONE;
 			addChild(image);
@@ -91,7 +106,7 @@ package {
 		private function _addtext(txt:String, fontName:String, x:int, y:int, size:int=32, scale:Number=0.5):void {
 			var fmt:TextFormat = new TextFormat(fontName, size, 0xffffff);
 			fmt.horizontalAlign = TextFormatAlign.LEFT;
-			var opt:TextOptions = new TextOptions(false, false);
+			var opt:TextOptions = new TextOptions(true, false);
 			var sp:Sprite;
 			sp = TextField.getBitmapFont(fontName).createSprite(200, size, txt, fmt, opt); // こちらで作らないとドローコールが減らない
 			var i:int = sp.numChildren;

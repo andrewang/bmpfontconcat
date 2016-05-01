@@ -1,0 +1,18 @@
+<font>
+	<info face="testAIUEO" size="14" />
+	<common lineHeight="14" scaleW="34" scaleH="25" pages="1" />
+	<pages>
+		<page id="0" file="testAIUEO.png" />
+	</pages>
+	<chars count="7">
+		<char id="12354" x="12" y="0" width="11" height="12" xoffset="0" yoffset="2" xadvance="12" /><!-- あ -->
+		<char id="12356" x="0" y="13" width="11" height="9" xoffset="0" yoffset="4" xadvance="12" /><!-- い -->
+		<char id="12358" x="24" y="0" width="9" height="11" xoffset="1" yoffset="3" xadvance="10" /><!-- う -->
+		<char id="12360" x="12" y="13" width="11" height="11" xoffset="0" yoffset="3" xadvance="12" /><!-- え -->
+		<char id="12362" x="0" y="0" width="11" height="12" xoffset="0" yoffset="2" xadvance="12" /><!-- お -->
+		<char id="32" x="0" y="0" width="0" height="0" xoffset="0" yoffset="0" xadvance="6" /><!--   -->
+		<char id="9" x="0" y="0" width="0" height="0" xoffset="0" yoffset="0" xadvance="24" /><!-- 	 -->
+	</chars>
+	<kernings count="0">
+	</kernings>
+</font>
