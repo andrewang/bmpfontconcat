@@ -26,9 +26,11 @@ package {
 	public class StarlingMain extends Sprite {
 
 		private static const CONTENTS_SIZE:Rectangle = new flash.geom.Rectangle(0, 0, 320, 224);
+		// private static const ASPECT_RATIO:Number = 0.9;
+		// private static const CONTENTS_SIZE2:Rectangle = new flash.geom.Rectangle(0, 0, 320 * ASPECT_RATIO, 224);
 
 		// msx:256 famicom:256 pc80:320 PCEngine:256,320,336,512
-		// msx:212 famicom:224 pc80:200 PCEngine:240(実質224)
+		// msx:212(192) famicom:224 pc80:200 PCEngine:240(実質224)
 
 		public static function start(nativeStage:Stage):void {
 			trace("Staaling version", Starling.VERSION);
@@ -36,12 +38,12 @@ package {
 			var starling:Starling = new Starling(
 				StarlingMain,
 				nativeStage,
-				new Rectangle(0, 0, CONTENTS_SIZE.width, CONTENTS_SIZE.height)
+				CONTENTS_SIZE
 			);
 			starling.skipUnchangedFrames = true;
 			starling.antiAliasing = 0;
 			starling.start();
-			starling.stage.color = 0x000000;
+			starling.stage.color = 0x111111;
 			nativeStage.addEventListener(Event.RESIZE,_updateViewPort);
 			_updateViewPort();
 		}
@@ -49,11 +51,14 @@ package {
 			var starling:Starling = Starling.current;
 			var w:int = starling.nativeStage.stageWidth;
 			var h:int = starling.nativeStage.stageHeight;
-			var scale:Number = Math.floor(Math.min(w/CONTENTS_SIZE.width,h/CONTENTS_SIZE.height));
+			var scale:Number = Math.min(w/CONTENTS_SIZE.width,h/CONTENTS_SIZE.height);
+			if(scale > 1.0) scale = Math.floor(scale); //0になるとエラー
+			trace('scale to', scale);
 			starling.viewPort = RectangleUtil.fit(
-				new Rectangle(0, 0, CONTENTS_SIZE.width, CONTENTS_SIZE.height),
+				CONTENTS_SIZE,
 				new Rectangle((w - CONTENTS_SIZE.width*scale)>>1, (h - CONTENTS_SIZE.height*scale)>>1, CONTENTS_SIZE.width*scale,CONTENTS_SIZE.height*scale),
-				ScaleMode.SHOW_ALL);
+				ScaleMode.SHOW_ALL
+			);
 
 			starling.showStats = true;
 			starling.showStatsAt(Align.RIGHT, Align.BOTTOM);
@@ -120,6 +125,7 @@ package {
 			//tf.autoScale = TextFieldAutoSize.VERTICAL;
 			//tf.format = fmt;
 			//tf.text = txt;
+			//tf.autoSize = TextFieldAutoSize.BOTH_DIRECTIONS;
 			//sp = tf;
 
 			sp.x = x;
